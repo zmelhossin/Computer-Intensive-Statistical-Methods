@@ -35,6 +35,22 @@ mean(sample_means_50$x_bar) # the sampling mean = 180611
 mean(ames$price) # the pop mean = 180796.1   they are very close.
 
 
+#E3: Change your sample size from 50 to 150, then compute the sampling distribution using the same method 
+#as above, and store these means in a new vector called sample_means150. Describe the shape of this 
+#sampling distribution and compare it to the sampling distribution for a sample size of 50. Based on this 
+#sampling distribution, what would you guess to be the mean sale price of homes in Ames?
+sample_means150 <- ames %>%
+  rep_sample_n(size = 150, reps = 5000, replace = T) %>%
+  summarise(x_bar = mean(price))
+ggplot(data = sample_means150, aes(x = x_bar)) + geom_histogram(binwidth = 2000) # the two of 50 and 150 follows normal distibution.
+mean(sample_means150$x_bar) # the sampling mean = 180883.8
+mean(ames$price) # the pop mean = 180796.1 # the mean of 150 sampling is closer to the pop mean than 50 sampling.
+
+
+
+
+
+
 
 
 
