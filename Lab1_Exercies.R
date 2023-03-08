@@ -27,8 +27,12 @@ mean(sampl$price) # sample size 50 mean = 185798.7 "best point estimate for pop 
 #samples from the population of size 50 and computing 5000 sample means. Store these means in a vector 
 #called sample_means50. Plot the data, then describe the shape of this sampling distribution. Based on this 
 #sampling distribution, what would you guess the mean home price of the population to be?
-
-
+sample_means_50 <- ames %>%
+  rep_sample_n(size = 50, reps = 5000, replace = T) %>%
+  summarise(x_bar = mean(price))
+ggplot(data = sample_means_50, aes(x = x_bar)) + geom_histogram(binwidth = 2000) # the shape of the sampling is normal distribution
+mean(sample_means_50$x_bar) # the sampling mean = 180611
+mean(ames$price) # the pop mean = 180796.1   they are very close.
 
 
 
