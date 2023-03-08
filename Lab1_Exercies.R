@@ -47,6 +47,27 @@ mean(sample_means150$x_bar) # the sampling mean = 180883.8
 mean(ames$price) # the pop mean = 180796.1 # the mean of 150 sampling is closer to the pop mean than 50 sampling.
 
 
+#E4: Take a sample of size 15 from the population and calculate the mean price of the homes in this sample. 
+#Using this sample, what is your best point estimate of the population mean of prices of homes?
+sample_15 <- ames %>%
+  sample_n(size = 15)
+mean(sample_15$price) # the mean of 15 sample = 176473.9
+
+#E5: Since you have access to the population, simulate the sampling distribution for 𝑥̅𝑝𝑟𝑖𝑐𝑒 by taking 2000 
+#samples from the population of size 15 and computing 2000 sample means. Store these means in a vector 
+#called sample_means15. Plot the data, then describe the shape of this sampling distribution. Based on this 
+#sampling distribution, what would you guess the mean home price of the population to be? Finally, calculate 
+#and report the population mean
+sample_means15 <- ames %>%
+  rep_sample_n(size = 15, reps = 2000, replace = T) %>%
+  summarise(x_bar = mean(price))
+ggplot(data = sample_means15, aes(x = x_bar)) + geom_histogram(binwidth = 2000) # the dist is normal  (shape).
+mean(sample_means15$x_bar)# the mean of 15 sampling = 180726.2
+mean(ames$price) # the population mean = 180796.1  !!!
+
+
+
+
 
 
 
