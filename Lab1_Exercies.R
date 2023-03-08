@@ -65,6 +65,18 @@ ggplot(data = sample_means15, aes(x = x_bar)) + geom_histogram(binwidth = 2000) 
 mean(sample_means15$x_bar)# the mean of 15 sampling = 180726.2
 mean(ames$price) # the population mean = 180796.1  !!!
 
+#E6: Change your sample size from 15 to 150, then compute the sampling distribution using the same method 
+#as above, and store these means in a new vector called sample_means150. Describe the shape of this 
+#sampling distribution and compare it to the sampling distribution for a sample size of 15. Based on this 
+#sampling distribution, what would you guess to be the mean sale price of homes in Ames
+sample_means150 <- ames %>%
+  rep_sample_n(size = 150, reps = 2000, replace = T) %>%
+  summarise(x_bar = mean(price))
+ggplot(data = sample_means150, aes(x = x_bar)) + geom_histogram(binwidth = 2000) # the dist is normal  (shape) just like sampling dist of 15.
+mean(sample_means15$x_bar)# the mean of 150 sampling = 180726.2  this is the same mean result using the sampling of 15.
+mean(ames$price) # the population mean = 180796.1  !!!
+
+
 
 
 
